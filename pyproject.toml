@@ -1,0 +1,43 @@
+[project]
+name = "praline-config"
+version = "0.1.0"
+authors = [
+    { name="Matthew Galbraith", email="cuelindar.github@applogins.net" },
+]
+description = "Easy app configuration."
+readme = "README.md"
+
+requires-python = ">=3.11"
+dependencies = [
+    "python-configuration",
+    "python-dotenv",
+    "PyYAML",
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/hackmonkey/praline-config"
+Issues = "https://github.com/hackmonkey/praline-config/issues"
+
+
+[build-system]
+requires = [
+    "setuptools",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
