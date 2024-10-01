@@ -4,7 +4,7 @@ Setup logging for the library.
 
 import sys
 import logging
-__logger = logging.getLogger(f"praline-config.{sys.modules[__name__].__package__.split(".")[0]}")
+__logger = logging.getLogger(f"""praline-config.{sys.modules[__name__].__package__.split(".")[0]}""")
 
 
 trace = lambda *args, **kwargs: ...
