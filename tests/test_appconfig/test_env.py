@@ -6,7 +6,7 @@ import pytest
 from config import config_from_yaml
 
 from praline.config import AppConfigBase
-from praline.config.model import SecureValue
+from praline.config.model import SecureValue, SingletonBase
 
 
 @pytest.fixture
@@ -22,7 +22,7 @@ def config_yaml() -> str:
 
 
 @dataclass
-class AppConfig(AppConfigBase):
+class AppConfig(AppConfigBase, SingletonBase):
     ...
 
 
