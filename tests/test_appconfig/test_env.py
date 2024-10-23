@@ -6,7 +6,7 @@ import pytest
 from config import config_from_yaml
 
 from praline.config import AppConfigBase
-from praline.model import SecureValue
+from praline.config.model import SecureValue
 
 
 @pytest.fixture

@@ -5,10 +5,9 @@ from typing import Any, get_origin, TypeVar, get_args, Type, Union, Iterable, Se
 from config import Configuration, config_from_dict, config as config_magic, ConfigurationSet
 from dotenv import load_dotenv
 
-from praline.env import EnvValue, SecureEnvValue
-from praline.helpers import if_any
-from praline.model import SingletonBase
-from praline.logging import warning, trace, debug
+from praline.config.env import EnvValue, SecureEnvValue
+from praline.config.helpers import if_any
+from praline.config.logging import warning, trace, debug
 
 
 def get_field_factory(f: Field):
@@ -133,6 +132,8 @@ def merge_configs(
     Detect if we have an iterable or a simple item.
     If Iterable, walk all items and turn them into a ConfigurationSet.
     """
+    if config_source is None:
+        return None
     _configs_clean: list[Configuration] = list()
     match config_source:
         case cs if isinstance(cs, Configuration):
@@ -167,11 +168,7 @@ class EnvConfig:
     secure_env: dict[str, SecureEnvValue.for_var] = None
 
 
-class AppConfigCore(SingletonBase):
-    r"""
-    Singleton intended to be instantiated at program startup and carry all
-    environmental and configuration data globally.
-    """
+class AppConfigCore:
     @classmethod
     def load(
             cls,

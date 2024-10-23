@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Any, Type
+from typing import Type
 
-from praline.model import HasInit, HasReify, WrappedValue, SecureValue
+from praline.config.model import HasInit, HasReify, WrappedValue, SecureValue
 
 
 class MyClass(HasInit):

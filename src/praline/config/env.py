@@ -1,7 +1,7 @@
 import os
 from typing import Self
 
-from praline.model import WrappedValue, SecureValue
+from praline.config.model import WrappedValue, SecureValue
 
 
 class EnvValue(WrappedValue):

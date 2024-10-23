@@ -8,7 +8,7 @@ import pytest
 from config import config_from_yaml
 
 from praline.config import AppConfigBase
-from praline.helpers import if_any
+from praline.config.helpers import if_any
 
 
 @dataclass

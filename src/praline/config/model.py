@@ -2,7 +2,7 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Type, Any, ClassVar, Self
 
-from praline.logging import warning
+from praline.config.logging import warning
 
 
 class HasReify:
@@ -48,7 +48,7 @@ class HasInit:
 @dataclass
 class SingletonBase(HasInit):
     r"""
-    Each classe inheriting from SingletonBase can each have up to one singleton
+    Each class inheriting from SingletonBase can each have up to one singleton
     instance created. Use subclasses to allow various singletons, each of
     their specific class type.
 
