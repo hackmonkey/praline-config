@@ -73,7 +73,7 @@ def load_dict(element_type: _ET, value: dict[str, Any]) -> dict[str, _ET]:
     return result
 
 
-def load_list(element_type: _ET, value: list[Any]) -> list[_ET]:
+def load_list(element_type: _ET, value: list[Any]) -> list[Any]:
     r"""
     Instantiates each element of a list based on the generic type specified for
     the field.
@@ -133,7 +133,8 @@ def merge_configs(
     If Iterable, walk all items and turn them into a ConfigurationSet.
     """
     if config_source is None:
-        return None
+        return Configuration({})
+
     _configs_clean: list[Configuration] = list()
     match config_source:
         case cs if isinstance(cs, Configuration):
@@ -155,6 +156,9 @@ def merge_configs(
                     trace("subconfig is empty.")
         case _:
             warning(f"Unknown config type: {type(config_source)}.")
+
+    if len(_configs_clean) == 0:
+        return Configuration({})
 
     return ConfigurationSet(*_configs_clean)
 
