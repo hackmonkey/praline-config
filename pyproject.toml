@@ -1,6 +1,6 @@
 [project]
 name = "praline-config"
-version = "0.1.2"
+version = "0.1.3-dev0"
 authors = [
     { name="Matthew Galbraith", email="cuelindar.github@applogins.net" },
 ]
@@ -18,7 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Development Status :: 4 - Beta",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
