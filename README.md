@@ -69,7 +69,7 @@ Threads: 4
 configuration data, so any format it supports is supported. Additionally,
 `praline-config` can handle importing `dotenv` formatted files and binding
 environment variable values to fields in your configuration class. Finally, it
-can also incorporate values gathered from the CLI or similar through an
+can also incorporate values gathered from the CLI or similar through a
 dictionary.
 
 See the documentation for [python-configuration](https://pypi.org/project/python-configuration/) for the complete list of supported formats.
