@@ -11,6 +11,16 @@ from praline.config import AppConfigBase
 from praline.config.helpers import if_any
 
 
+class NonDataclass:
+    def __init__(
+        self,
+        label: str = None,
+        amount: int = None,
+    ):
+        self.label = label
+        self.amount = amount
+
+
 @dataclass
 class UserObject:
     name: str = None
@@ -40,6 +50,7 @@ class AppConfig(AppConfigBase):
     user_object: UserObject = None
     user_list: list[UserObject] = None
     user_map: dict[str, UserObject] = None
+    non_dataclass: NonDataclass = None
 
 
 @pytest.fixture
@@ -68,6 +79,9 @@ def config_yaml() -> str:
                 cfo:
                   name: Bob
                   age: 42
+            non_dataclass:
+                label: "First"
+                amount: 100
         """
     )
 
@@ -95,6 +109,10 @@ def test_app_config(config_yaml):
 
     assert len(app_config.user_map) == 2
     assert UserObject(name="Bob", age=42) == app_config.user_map["cfo"]
+
+    ndc: NonDataclass = NonDataclass(label="First", amount=100)
+    assert app_config.non_dataclass.label == ndc.label
+    assert app_config.non_dataclass.amount == ndc.amount
     ...
 
 

@@ -1,9 +1,9 @@
-from dataclasses import Field, field, dataclass, fields
+from dataclasses import field, dataclass, fields
 from typing import Any
 
 from config import Configuration, config_from_dict
 
-from praline.config import load_primitive, get_field_factory, load_list, load_dict, merge_configs
+from praline.config import load_complex, load_primitive, get_field_factory, load_list, load_dict, merge_configs
 
 
 def test_load_primitive():
@@ -13,6 +13,12 @@ def test_load_primitive():
     y = load_primitive(int, "1")
     assert x == y
     assert type(x) == type(y)
+
+
+def test_load_complex():
+    x: dict = {"a": 1, "b": 2}
+    y: dict = load_complex(dict, {"a": 1, "b": 2})
+    assert x == y
 
 
 @dataclass

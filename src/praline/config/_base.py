@@ -1,6 +1,7 @@
 from dataclasses import Field, MISSING, is_dataclass, dataclass, fields
+from inspect import isclass, isroutine
 from pathlib import Path
-from typing import Any, get_origin, TypeVar, get_args, Type, Union, Iterable, Self
+from typing import Any, get_origin, TypeVar, get_args, Type, Union, Iterable, Self, Optional
 
 from config import Configuration, config_from_dict, config as config_magic, ConfigurationSet
 from dotenv import load_dotenv
@@ -45,11 +46,37 @@ def load_element(factory, value) -> Any:
     else:
         try:
             trace(f"{factory} is a primitive or callable.")
-            _value = load_primitive(factory, value)
-        except:
-            warning(f"Could not load value for: {factory}")
+            if isinstance(value, (Configuration, dict, list)):
+                # If factory isn't a type we know how to handle,
+                #  assume that a dict/Configuration means we should
+                #  try loading it as a kwargs dict.
+                trace(f"Trying load_complex for {factory}.")
+                _value = load_complex(factory, value)
+            if _value is None:
+                # last resort attempt to instantiate the field
+                trace(f"Trying last-resort, load_primitive for {factory}.")
+                _value = load_primitive(factory, value)
+        except Exception as ex:
+            warning(f"Could not load value for: {factory} | {ex}")
 
     return _value
+
+
+def load_complex(factory: callable, value: Configuration|dict) -> Any:
+    r"""
+    Best-effort attempt to load a non-dataclass object.
+    """
+    result = None
+    try:
+        parameters: Optional[dict] = None
+        if isinstance(value, Configuration):
+            parameters = value.as_dict()
+        elif isinstance(value, dict):
+            parameters = value
+        result = factory(**parameters)
+    except Exception as ex:
+        warning(f"Could not load value for: {factory} | {ex}")
+    return result
 
 
 def load_primitive(factory: type, value: Any) -> Any:

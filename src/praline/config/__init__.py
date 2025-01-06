@@ -1,6 +1,6 @@
 from ._base import get_field_factory, load_dataclass, load_dict, load_list, load_primitive, load_element, \
     merge_configs, AppConfigCore, AppConfigBase, EnvConfig, EnvValue, SecureEnvValue, AppConfigurationType, \
-    AppConfigurationSource
+    AppConfigurationSource, load_complex
 
 __all__ = [
     # get_field_factory,
