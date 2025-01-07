@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from dataclasses import dataclass
-from typing import Type, Any, ClassVar, Self
+from typing import Any, ClassVar, Self, Type
 
 from praline.config.logging import warning
 

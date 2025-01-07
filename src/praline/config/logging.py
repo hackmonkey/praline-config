@@ -7,7 +7,7 @@ import sys
 __logger = logging.getLogger(f"""praline-config.{sys.modules[__name__].__package__.split(".")[0]}""")
 
 
-trace = lambda *args, **kwargs: ...
+def trace(*args, **kwargs): ...
 debug = __logger.debug
 info = __logger.info
 warning = __logger.warning

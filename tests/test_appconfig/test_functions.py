@@ -1,9 +1,10 @@
-from dataclasses import field, dataclass, fields
+from dataclasses import dataclass, field, fields
 from typing import Any
 
 from config import Configuration, config_from_dict
 
-from praline.config import load_complex, load_primitive, get_field_factory, load_list, load_dict, merge_configs
+from praline.config._base import (get_field_factory, load_complex, load_dict,
+                                  load_list, load_primitive, merge_configs)
 
 
 def test_load_primitive():
@@ -12,7 +13,7 @@ def test_load_primitive():
 
     y = load_primitive(int, "1")
     assert x == y
-    assert type(x) == type(y)
+    assert type(x) is type(y)
 
 
 def test_load_complex():
@@ -34,9 +35,9 @@ def test_get_field_factory():
 
         match name:
             case 'int_field':
-                assert get_field_factory(f) == int, "Failed test based on field type annotation."
+                assert get_field_factory(f) is int, "Failed test based on field type annotation."
             case 'factory_field':
-                assert get_field_factory(f) == str, "Failed test based on field default factory."
+                assert get_field_factory(f) is str, "Failed test based on field default factory."
             case 'no_type_field':
                 assert get_field_factory(f) is None, "Failed test for missing type annotation."
 

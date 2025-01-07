@@ -1,14 +1,16 @@
-from dataclasses import Field, MISSING, is_dataclass, dataclass, fields
-from inspect import isclass, isroutine
+from dataclasses import MISSING, Field, dataclass, fields, is_dataclass
 from pathlib import Path
-from typing import Any, get_origin, TypeVar, get_args, Type, Union, Iterable, Self, Optional
+from typing import (Any, Iterable, Optional, Self, Type, TypeVar, Union,
+                    get_args, get_origin)
 
-from config import Configuration, config_from_dict, config as config_magic, ConfigurationSet
+from config import Configuration, ConfigurationSet
+from config import config as config_magic
+from config import config_from_dict
 from dotenv import load_dotenv
 
 from praline.config.env import EnvValue, SecureEnvValue
 from praline.config.helpers import if_any
-from praline.config.logging import warning, trace, debug
+from praline.config.logging import debug, trace, warning
 
 
 def get_field_factory(f: Field):

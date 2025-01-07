@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from praline.config.helpers import nullif, if_any, csv_to_nested_dict
+from praline.config.helpers import csv_to_nested_dict, if_any, nullif
 
 
 def test_nullif():
