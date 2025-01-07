@@ -1,6 +1,6 @@
 [project]
 name = "praline-config"
-version = "0.1.3-dev0"
+version = "0.1.3"
 authors = [
     { name="Matthew Galbraith", email="cuelindar.github@applogins.net" },
 ]
